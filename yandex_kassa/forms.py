@@ -155,12 +155,12 @@ class PaymentForm(BaseShopIdForm, BasePaymentTypeForm,
 
 
 class CheckOrderForm(BaseShopIdForm, BasePaymentTypeForm,
-                     BaseActionForm, BaseOrderForm,
+                     BaseActionForm, BaseOrderForm, BaseOrderNumberForm,
                      BaseInvoiceId, BaseCustomerNumberForm, BaseMd5Form):
     pass
 
 
 class PaymentAvisoForm(BaseActionForm, BaseShopIdForm,
-                       BaseInvoiceId, BaseOrderForm,
+                       BaseInvoiceId, BaseOrderForm, BaseOrderNumberForm,
                        BaseCustomerNumberForm, BasePaymentTypeForm, BaseMd5Form):
     pass
