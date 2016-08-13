@@ -61,9 +61,9 @@ class Payment(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
                              verbose_name='Пользователь')
-    customer_number = models.CharField('Номер заказа',
-                                       unique=True, max_length=64,
-                                       default=get_uuid)
+    order_id = models.CharField('ID заказа', max_length=64, default=get_uuid)
+    customer_number = models.CharField('ID плательщика', max_length=64, default=get_uuid)
+
     status = models.CharField('Результата', max_length=16,
                               choices=STATUS.CHOICES,
                               default=STATUS.PROCESSED)

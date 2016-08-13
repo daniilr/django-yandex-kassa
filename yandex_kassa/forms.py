@@ -27,23 +27,22 @@ class BaseShopIdForm(forms.Form):
 class BaseCustomerNumberForm(forms.Form):
     customerNumber = forms.CharField(label=' ID пользователя', min_length=1, max_length=64, widget=readonly_widget)
 
-    def get_payment(self):
-        customer_number = self.cleaned_data.get('customerNumber')
-        return get_object_or_None(Payment, customer_number=customer_number)
-
-    def clean_customerNumber(self):
-        customer_number = self.cleaned_data['customerNumber']
-        payment = get_object_or_None(Payment, customer_number=customer_number)
-        if not payment:
-            raise forms.ValidationError(
-                u'Заказ с номером %s не найден' % str(customer_number)
-            )
-        return customer_number
-
 
 class BaseOrderNumberForm(forms.Form):
     orderNumber = forms.CharField(label='Номер заказа', min_length=1, max_length=64, widget=readonly_widget)
 
+    def get_payment(self):
+        order_number = self.cleaned_data.get('orderNumber')
+        return get_object_or_None(Payment, orderNumber=order_number)
+
+    def clean_orderNumber(self):
+        order_number = self.cleaned_data['orderNumber']
+        payment = get_object_or_None(Payment, orderNumber=order_number)
+        if not payment:
+            raise forms.ValidationError(
+                u'Заказ с номером %s не найден' % str(order_number)
+            )
+        return order_number
 
 class BaseMd5Form(forms.Form):
     md5 = forms.CharField(min_length=32, max_length=32, widget=readonly_widget)
