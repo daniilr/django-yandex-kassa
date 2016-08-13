@@ -166,7 +166,7 @@ class PaymentAvisoView(BaseFormView):
             0, payment.invoice_id, payment.shop_id
         )
         logger.debug(u'Ответ PaymentAvisoView: "%s"' % content)
-        return self.get_response(content)
+        return self.get_response(content.encode("utf-8"))
 
     def get_xml_element(self, **params):
         params = {k: six.text_type(v) for k, v in params.items()}
