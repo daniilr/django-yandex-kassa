@@ -33,11 +33,11 @@ class BaseOrderNumberForm(forms.Form):
 
     def get_payment(self):
         order_number = self.cleaned_data.get('orderNumber')
-        return get_object_or_None(Payment, orderNumber=order_number)
+        return get_object_or_None(Payment, order_id=order_number)
 
     def clean_orderNumber(self):
         order_number = self.cleaned_data['orderNumber']
-        payment = get_object_or_None(Payment, orderNumber=order_number)
+        payment = get_object_or_None(Payment, order_id=order_number)
         if not payment:
             raise forms.ValidationError(
                 u'Заказ с номером %s не найден' % str(order_number)
