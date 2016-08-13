@@ -63,7 +63,7 @@ class BaseMd5Form(forms.Form):
                   str(cd['customerNumber']),
                   conf.SHOP_PASSWORD]
         s = str(';'.join(params))
-        return md5(s).hexdigest().upper()
+        return md5(s.encode('utf-8')).hexdigest().upper()
 
 
 class BasePaymentTypeForm(forms.Form):
